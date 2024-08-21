@@ -19,8 +19,8 @@ const initiateAndStartDatabaseServer = async () => {
             driver: sqlite3.Database,
         });
         // Start the server on port 3000
-        app.listen(3001, () => {
-            console.log('Backend server is running at http://localhost:3001/');
+        app.listen(3000, () => {
+            console.log('Backend server is running at http://localhost:3000/');
         });
     } catch (e) {
         console.error(`DB Error: ${e.message}`);
@@ -56,4 +56,10 @@ app.post('/users', async (req, res) => {
     }
 });
 
+
+app.get("/userData/",async(req,res)=>{
+    const userQuery=`select * from user;`
+    const responseData=await db.all(userQuery)
+    res.send(responseData)
+})
 
